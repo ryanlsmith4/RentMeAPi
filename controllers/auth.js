@@ -1,23 +1,23 @@
 const User = require('../models/landlords');
 const jwt = require('jsonwebtoken');
-const router = require('express').Router()
+const router = require('express').Router();
 
 
 // LOGIN
-router.post("/login", (req, res) => {
+router.post('/login', (req, res) => {
     // Logs users in to website
-    const username = req.body.username
-    const password = req.body.password
+    const username = req.body.username;
+    const password = req.body.password;
     // Find this user name
     User.findOne({
-            username
-        }, "username password")
+        username
+    }, 'username password')
         .then(user => {
             console.log(user);
             if (!user) {
                 // User not found
                 return res.status(401).send({
-                    message: "Wrong Username or Password"
+                    message: 'Wrong Username or Password'
                 });
             }
             // Check the password
@@ -27,7 +27,7 @@ router.post("/login", (req, res) => {
                     // console.log(isMatch);
                     // Password does not match
                     return res.status(401).send({
-                        message: "Wrong Username or password"
+                        message: 'Wrong Username or password'
                     });
                 }
                 // Create a token
@@ -35,14 +35,14 @@ router.post("/login", (req, res) => {
                     _id: user._id,
                     username: user.username
                 }, process.env.SECRET, {
-                    expiresIn: "60 days"
+                    expiresIn: '60 days'
                 });
                 // Set a cookie and redirect to root
-                res.status(200).cookie("nToken", token, {
+                res.status(200).cookie('nToken', token, {
                     maxAge: 900000,
                     httpOnly: true
                 });
-                res.redirect("/");
+                res.redirect('/');
             });
         })
         .catch(err => {
@@ -59,20 +59,29 @@ router.get('/logout', (req, res) => {
 });
 
 // SIGN UP POST
-  router.post('/sign-up', (req, res) => {
-      //  signs users up for the website
-      console.log(req.body);
+router.post('/sign-up', (req, res) => {
+    //  signs users up for the website
+    console.log(req.body);
     // Create User and JWT
     const user = new User(req.body);
 
     user.save().then((user) => {
-      var token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: "60 days" });
-      res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
-      res.redirect('/');
+        var token = jwt.sign({
+            _id: user._id
+        }, process.env.SECRET, {
+            expiresIn: '60 days'
+        });
+        res.cookie('nToken', token, {
+            maxAge: 900000,
+            httpOnly: true
+        });
+        res.redirect('/');
     }).catch((err) => {
-      console.log(err.message);
-      return res.status(400).send({ err: err });
+        console.log(err.message);
+        return res.status(400).send({
+            err: err
+        });
     });
-  });
+});
 
-  module.exports = router;
+module.exports = router;

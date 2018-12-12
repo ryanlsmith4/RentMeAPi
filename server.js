@@ -1,9 +1,9 @@
-require('dotenv').config()
-const Rental = require('./models/rental');
-const User = require('./models/landlords')
+
+require('dotenv').config();
+
 const methodOverride = require('method-override');
-var cookieParser = require('cookie-parser')
-const jwt = require('jsonwebtoken')
+var cookieParser = require('cookie-parser');
+
 const express = require('express');
 const app = express();
 var exphbs = require('express-handlebars');
@@ -26,11 +26,11 @@ module.exports = app;
 
 
 
-const rentals = require('./controllers/routes')
+const rentals = require('./controllers/routes');
 const users = require('./controllers/auth');
 
-app.use("/user", users)
-app.use("/listing", rentals)
+app.use('/user', users);
+app.use('/listing', rentals);
 
 app.listen(port, () => {
     console.log('App Listening on port 3000');
