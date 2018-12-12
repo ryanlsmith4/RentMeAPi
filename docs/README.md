@@ -1,19 +1,52 @@
 # RentMeAPI
 ## ABOUT
 
-> This Api allows users to sign up to Host Rental Listings
+This API allows users to sign up to Host Rental Listings
 
->Makes it easy for people to connect and find tenants
+Makes it easy for people to connect and find tenants
 
->As this is a work in progress it still lacks valuable features such as searching for listings
+As this is a work in progress it still lacks valuable features such as searching for listings
 
-> Currently all the listings are in one place and that is the '/' route
+Currently all the listings are in one place and that is the '/' route
+
+This API currently can C.R.U.D listings and allows you to sign up for the app.
+
+# Routes
+POST: Create new user requires a username and a password in the header
+>/user/sign-up
+
+POST: Login as a user requires a username and a password in the header
+>/user/login
+
+GET: Logout clears the cookie nToken
+>/user/logout
+
+POST: new rental listing requires a neighborhood, zip code(int), type (room, apt etc) and price(int)
+>/listing/rentals/view/new
+
+GET: Get a list of all listings
+>/listing/rentals/
+
+GET: Gets a rental by the ID requires knowledge of the rental ID
+>/listing/rentals/:id
+
+DELETE: deletes an entry by ID
+
+>/listing/rentals/delete/:id
+
+PUT: Updates a listing by ID
+>/listing.rentals/view/:id
 
 # Getting Started
-To get started install the dependencies in a new project.
+To get started install the dependencies in a new project folder.
+Since there is no front end on this API besides the docsify brochure you will either need to have knowledge of postman or go to the actual webpage on heroku to see the skinned project
+
+https://rentmenow.herokuapp.com/
 
 ## Dependencies
 I have used node and npm for all the dependencies
+To install these in your project folder type
+```npm i <package> --save```
 
     "bcrypt": "^3.0.2",
     "bootstrap": "^4.1.3",

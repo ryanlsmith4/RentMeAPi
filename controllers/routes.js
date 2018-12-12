@@ -1,10 +1,8 @@
 const Rental = require('../models/rental');
+const router = require("express").Router()
 
-//index
-
-module.exports = function(app, Rental) {
     // Takes user to the listing page
-    app.get('/', (req, res) => {
+    router.get('/', (req, res) => {
         Rental.find()
         .then(rentals => {
             return res.json({rentals: rentals});
@@ -16,7 +14,7 @@ module.exports = function(app, Rental) {
 
     // show
 
-    app.get('/rentals/view/:id', (req, res) => {
+    router.get('/rentals/view/:id', (req, res) => {
         // Users can see individual listing
         Rental.findById(req.params.id).then((rental) => {
             return res.json({rentalId: rental});
@@ -27,7 +25,7 @@ module.exports = function(app, Rental) {
 
     // delete
 
-    app.delete('/rentals/view/:id', function (req, res) {
+    router.delete('/rentals/delete/:id', function (req, res) {
         // deletes a rental
         console.log("Delete Rental");
         Rental.findByIdAndRemove(req.params.id).then((rental) => {
@@ -40,8 +38,7 @@ module.exports = function(app, Rental) {
     // edit page
 
 
-
-    app.post('/rentals/view/:id/new', (req, res) => {
+    router.post('/rentals/view/new', (req, res) => {
         Rental.create(req.body).then((rental) => {
             rental.landlord = req.user
             console.log(rental);
@@ -54,7 +51,7 @@ module.exports = function(app, Rental) {
     })
 
 
-    app.put('/rentals/view/edit/:id', (req, res) => {
+    router.put('/rentals/view/edit/:id', (req, res) => {
         // Allows user to edit rentals
         Rental.findByIdAndUpdate(req.params.id, req.body)
         .then(rental => {
@@ -66,7 +63,4 @@ module.exports = function(app, Rental) {
         })
     })
 
-
-
-
-}
+module.exports = router

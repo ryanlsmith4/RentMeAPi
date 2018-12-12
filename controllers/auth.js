@@ -1,11 +1,10 @@
-const User = require('../models/landlord');
+const User = require('../models/landlords');
 const jwt = require('jsonwebtoken');
-
-module.exports = function(app, User) {
+const router = require('express').Router()
 
 
 // LOGIN
-app.post("/login", (req, res) => {
+router.post("/login", (req, res) => {
     // Logs users in to website
     const username = req.body.username
     const password = req.body.password
@@ -14,6 +13,7 @@ app.post("/login", (req, res) => {
             username
         }, "username password")
         .then(user => {
+            console.log(user);
             if (!user) {
                 // User not found
                 return res.status(401).send({
@@ -22,7 +22,9 @@ app.post("/login", (req, res) => {
             }
             // Check the password
             user.comparePassword(password, (err, isMatch) => {
+                console.log(isMatch);
                 if (!isMatch) {
+                    // console.log(isMatch);
                     // Password does not match
                     return res.status(401).send({
                         message: "Wrong Username or password"
@@ -36,7 +38,7 @@ app.post("/login", (req, res) => {
                     expiresIn: "60 days"
                 });
                 // Set a cookie and redirect to root
-                res.cookie("nToken", token, {
+                res.status(200).cookie("nToken", token, {
                     maxAge: 900000,
                     httpOnly: true
                 });
@@ -49,14 +51,15 @@ app.post("/login", (req, res) => {
 });
 
 // LOGOUT
-app.get('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     // Well ^
+    console.log('ntoken');
     res.clearCookie('nToken');
     res.redirect('/');
 });
 
 // SIGN UP POST
-  app.post('/sign-up', (req, res) => {
+  router.post('/sign-up', (req, res) => {
       //  signs users up for the website
       console.log(req.body);
     // Create User and JWT
@@ -72,4 +75,4 @@ app.get('/logout', (req, res) => {
     });
   });
 
-}
+  module.exports = router;

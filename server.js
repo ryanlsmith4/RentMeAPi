@@ -23,9 +23,14 @@ app.set('view engine', 'handlebars');
 
 module.exports = app;
 
-const rental = require('./controllers/routes')(app, Rental);
-// const users = require('./controllers/auth')(app, User);
 
+
+
+const rentals = require('./controllers/routes')
+const users = require('./controllers/auth');
+
+app.use("/user", users)
+app.use("/listing", rentals)
 
 app.listen(port, () => {
     console.log('App Listening on port 3000');

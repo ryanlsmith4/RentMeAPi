@@ -9,7 +9,7 @@ const RentalSchema = new Schema({
         type: { type: String, required: true},
         amenities: { type: String, required: true},
         price: { type: Number, required: true},
-        landlord: {type: Schema.Types.ObjectId, ref: "Landlord", required: true}
+        landlord: {type: Schema.Types.ObjectId, ref: "Landlord"}
 });
 
 
