@@ -1,1 +1,1 @@
-web: docsify README.MD
+web: docs README.MD
