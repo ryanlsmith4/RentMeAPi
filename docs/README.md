@@ -35,7 +35,7 @@ DELETE: deletes an entry by ID
 >/listing/rentals/delete/:id
 
 PUT: Updates a listing by ID
->/listing.rentals/view/:id
+>/listing/rentals/view/:id
 
 # Getting Started
 To get started install the dependencies in a new project folder.
