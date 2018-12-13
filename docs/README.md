@@ -41,7 +41,7 @@ PUT: Updates a listing by ID
 To get started install the dependencies in a new project folder.
 Since there is no front end on this API besides the docsify brochure you will either need to have knowledge of postman or go to the actual webpage on heroku to see the skinned project
 
-Github Pages link
+Github Pages link<br>
 https://ryanlsmith4.github.io/RentMeAPi/#/
 
 https://rentmenow.herokuapp.com/
