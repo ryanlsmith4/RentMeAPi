@@ -1,1 +1,1 @@
-web: docs README.MD
+web web
