@@ -37,6 +37,7 @@ DELETE: deletes an entry by ID
 PUT: Updates a listing by ID
 >/listing/rentals/view/:id
 
+
 # Getting Started
 To get started install the dependencies in a new project folder.
 Since there is no front end on this API besides the docsify brochure you will either need to have knowledge of postman or go to the actual webpage on heroku to see the skinned project
@@ -44,6 +45,8 @@ Since there is no front end on this API besides the docsify brochure you will ei
 Github Pages link<br>
 https://ryanlsmith4.github.io/RentMeAPi/#/
 
+
+Heroku link to website<br>
 https://rentmenow.herokuapp.com/
 
 ## Dependencies
