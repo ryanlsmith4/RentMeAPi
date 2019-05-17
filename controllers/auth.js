@@ -77,8 +77,9 @@ router.post('/sign-up', (req, res) => {
         res.send("User succesfully add to DB cookie is:  " + token);
     }).catch((err) => {
         console.log(err.message);
+        console.log('Nope')
         return res.status(400).send({
-            err: err
+            err: err, 
         });
     });
 });
