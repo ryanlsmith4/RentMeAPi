@@ -42,7 +42,7 @@ router.post('/login', (req, res) => {
                     maxAge: 900000,
                     httpOnly: true
                 });
-                res.redirect('/');
+                res.send("User succesfully authenticated cookie is:  " + token);;
             });
         })
         .catch(err => {
@@ -61,7 +61,6 @@ router.get('/logout', (req, res) => {
 // SIGN UP POST
 router.post('/sign-up', (req, res) => {
     //  signs users up for the website
-    console.log(req.body);
     // Create User and JWT
     const user = new User(req.body);
 
@@ -75,7 +74,7 @@ router.post('/sign-up', (req, res) => {
             maxAge: 900000,
             httpOnly: true
         });
-        res.redirect('/');
+        res.send("User succesfully add to DB cookie is:  " + token);
     }).catch((err) => {
         console.log(err.message);
         return res.status(400).send({
