@@ -15,7 +15,7 @@ const user = {
 
 it('should login user and return and a cookie', (done) => {
     chai.request(app)
-      .post('/users/login')
+      .post('/user/login')
       .send({
         username: user.username,
         password: user.password,
@@ -40,7 +40,25 @@ it('should login user and return and a cookie', (done) => {
         password: user.password
       })
       .then((res) => {
-        expect(res).to.have.status(400);
+        expect(res).to.have.status(404);
+        return done();
+      })
+      .catch(err => done(err));
+  });
+
+  it('should reject invalid login', (done) => {
+    chai.request(app)
+      .post('/users/login')
+      .send({
+        email: user.username,
+        password: '123'
+      })
+      .then((res) => {
+        expect(res).to.have.status(404);
+        expect(res.headers['x-auth']).to.not.exist;
+        User.findById(user.id).then((user) => {
+        expect(res.token).to.not.exist;
+        }).catch(err => done(err));
         return done();
       })
       .catch(err => done(err));
