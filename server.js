@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 
 const express = require('express');
 const app = express();
-const exphbs = require('express-handlebars');
+// const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json())
@@ -21,8 +21,8 @@ app.use(cookieParser());
 
 app.use(methodOverride('_method'));
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+// app.set('view engine', 'handlebars');
 
 module.exports = app;
 
