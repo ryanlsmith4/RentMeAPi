@@ -2,11 +2,11 @@
 require('dotenv').config();
 
 const methodOverride = require('method-override');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 const express = require('express');
 const app = express();
-var exphbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json())
@@ -15,7 +15,6 @@ const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/rent-me',{ useNewUrlParser: true });
 
-// mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 app.use(cookieParser());

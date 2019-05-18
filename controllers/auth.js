@@ -33,7 +33,7 @@ router.post('/login', (req, res) => {
                 // Create a token
                 const token = jwt.sign({
                     _id: user._id,
-                    username: user.username
+                    username: user.username,
                 }, process.env.SECRET, {
                     expiresIn: '60 days'
                 });
