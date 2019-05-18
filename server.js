@@ -13,8 +13,11 @@ app.use(bodyParser.json())
 
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/rent-me', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/rent-me',{ useNewUrlParser: true });
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 app.use(cookieParser());
 
 app.use(methodOverride('_method'));

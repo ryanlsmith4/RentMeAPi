@@ -12,7 +12,7 @@ router.post('/login', (req, res) => {
     User.findOne({
         username
     }, 'username password')
-        .then(user => {
+        .then((user) => {
             console.log(user);
             if (!user) {
                 // User not found

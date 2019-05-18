@@ -4,7 +4,7 @@ const router = require('express').Router();
 // Takes user to the listing page
 router.get('/', (req, res) => {
     Rental.find()
-        .then(rentals => {
+        .then((rentals) => {
             return res.json({
                 rentals: rentals
             });
@@ -29,7 +29,7 @@ router.get('/rentals/view/:id', (req, res) => {
 
 // delete
 
-router.delete('/rentals/delete/:id', function(req, res) {
+router.delete('/rentals/delete/:id', (req, res) => {
     // deletes a rental
     console.log('Delete Rental');
     Rental.findByIdAndRemove(req.params.id).then((rental) => {
@@ -62,7 +62,7 @@ router.post('/rentals/view/new', (req, res) => {
 router.put('/rentals/view/edit/:id', (req, res) => {
     // Allows user to edit rentals
     Rental.findByIdAndUpdate(req.params.id, req.body)
-        .then(rental => {
+        .then((rental) => {
             res.json({
                 edited: rental
             });
