@@ -24,9 +24,6 @@ app.set('view engine', 'handlebars');
 
 module.exports = app;
 
-
-
-
 const rentals = require('./controllers/routes');
 const users = require('./controllers/auth');
 
